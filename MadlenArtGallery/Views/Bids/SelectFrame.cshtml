@@ -1,0 +1,228 @@
+﻿@model MadlenArtGallery.Models.FrameSelectionViewModel
+
+@{
+    ViewData["Title"] = "Select Frame";
+}
+
+<div class="container mt-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="MyWins">My Wins</a></li>
+            <li class="breadcrumb-item active">Select Frame</li>
+        </ol>
+    </nav>
+
+    <h1 class="mb-4">
+         Frame Selection
+    </h1>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                @if (!string.IsNullOrEmpty(Model.ArtworkImageUrl))
+                {
+                    <img src="@Model.ArtworkImageUrl"
+                         class="card-img-top"
+                         alt="@Model.ArtworkTitle"
+                         style="height: 300px; object-fit: cover;">
+                }
+                else
+                {
+                    <div class="bg-light d-flex align-items-center justify-content-center"
+                         style="height: 300px;">
+                        <i class="fas fa-image fa-3x text-muted"></i>
+                    </div>
+                }
+                <div class="card-body">
+                    <h5 class="card-title">@Model.ArtworkTitle</h5>
+                    <p class="text-muted">
+                        <i class="fas fa-user"></i> by @Model.ArtworkArtist
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5><i class="fas fa-calculator"></i> Price Summary</h5>
+                    <table class="table table-borderless mb-0">
+                        <tbody>
+                            <tr>
+                                <td><strong>Artwork Price:</strong></td>
+                                <td class="text-end">€@Model.ArtworkPrice.ToString("N2")</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Selected Frame:</strong></td>
+                                <td class="text-end" id="framePrice">€0.00</td>
+                            </tr>
+                            <tr class="border-top">
+                                <td><strong class="fs-5 text-primary">Total:</strong></td>
+                                <td class="text-end">
+                                    <strong class="fs-5 text-primary" id="totalPrice">
+                                        €@Model.ArtworkPrice.ToString("N2")
+                                    </strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-warning mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>Remove Current Frame</strong>
+                <p class="mb-0 mt-2">Click here if you want to remove the frame completely from this artwork.</p>
+            </div>
+            <form asp-action="RemoveFrame" method="post" style="display:inline;">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="purchaseId" value="@Model.PurchaseId" />
+                <button type="submit"
+                        class="btn btn-danger btn-lg"
+                        onclick="return confirm('Are you sure you want to REMOVE the frame?\n\nThis will reduce the total price.');">
+                    <i class="fas fa-trash"></i> REMOVE FRAME
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    <h2 class="mb-4">Choose a New Frame</h2>
+
+    @if (Model.AvailableFrames != null && Model.AvailableFrames.Any())
+    {
+        <form asp-action="AddFrameToPurchase" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="purchaseId" value="@Model.PurchaseId" />
+            <input type="hidden" name="frameSizeId" id="selectedFrameSizeId" />
+
+            @foreach (var frame in Model.AvailableFrames)
+            {
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-3 text-center">
+                                @if (!string.IsNullOrEmpty(frame.ImageUrl))
+                                {
+                                    <img src="@frame.ImageUrl"
+                                         class="img-fluid rounded"
+                                         style="max-height: 180px;"
+                                         alt="@frame.Material - @frame.Color" />
+                                }
+                                else
+                                {
+                                    <div class="bg-light d-flex align-items-center justify-content-center rounded"
+                                         style="height: 180px;">
+                                        <i class="fas fa-border-style fa-3x text-muted"></i>
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-md-9">
+                                <h4>
+                                    <i class="fas fa-border-style"></i>
+                                    @frame.Material - @frame.Color
+                                </h4>
+                                @if (frame.Sizes != null && frame.Sizes.Any())
+                                {
+                                    <table class="table table-sm table-hover mt-3">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th><i class="fas fa-ruler-combined"></i> Size (cm)</th>
+                                                <th><i class="fas fa-euro-sign"></i> Price</th>
+                                                <th class="text-center">Select</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var size in frame.Sizes)
+                                            {
+                                                <tr class="frame-row"
+                                                    style="cursor: pointer;"
+                                                    onclick="selectFrame(@size.Id, @size.Price)">
+                                                    <td>@size.Height x @size.Width</td>
+                                                    <td>€@size.Price.ToString("N2")</td>
+                                                    <td class="text-center">
+                                                        <input type="radio"
+                                                               name="frameRadio"
+                                                               value="@size.Id"
+                                                               class="form-check-input">
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="MyWins" class="btn btn-secondary btn-lg">
+                    <i class="fas fa-arrow-left"></i> Back
+                </a>
+                <button type="submit" class="btn btn-primary btn-lg" id="submitBtn" disabled>
+                    <i class="fas fa-check"></i> Save Selected Frame
+                </button>
+            </div>
+        </form>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle"></i> No frames available at the moment.
+        </div>
+        <a asp-action="MyWins" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Back to My Wins
+        </a>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        const basePrice = @Model.ArtworkPrice;
+
+        function selectFrame(sizeId, price) {
+            document.getElementById('selectedFrameSizeId').value = sizeId;
+            document.getElementById('framePrice').textContent = '€' + price.toFixed(2);
+            document.getElementById('totalPrice').textContent = '€' + (basePrice + price).toFixed(2);
+            document.getElementById('submitBtn').disabled = false;
+
+            document.querySelectorAll('.frame-row').forEach(row => {
+                row.classList.remove('table-active', 'border-start', 'border-primary', 'border-3');
+            });
+
+            event.currentTarget.classList.add('table-active', 'border-start', 'border-primary', 'border-3');
+            event.currentTarget.querySelector('input[type="radio"]').checked = true;
+        }
+    </script>
+}
+
+@section Styles {
+    <style>
+        .frame-row {
+            transition: all 0.2s ease;
+        }
+
+            .frame-row:hover {
+                background-color: #f8f9fa !important;
+                transform: translateX(5px);
+            }
+
+            .frame-row.table-active {
+                background-color: #e7f3ff !important;
+            }
+
+        .card {
+            transition: transform 0.2s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-2px);
+            }
+    </style>
+}

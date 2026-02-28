@@ -1,0 +1,149 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="hero-section">
+    <div class="container">
+        <h1 class="display-3 fw-bold mb-4">Madlen Art Gallery</h1>     
+        <p class="lead mb-5">Sign in to explore timeless art and exclusive collections.</p>
+        <a asp-controller="Artworks"
+           asp-action="Index"
+           class="btn hero-btn">
+            View Collection
+        </a>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="stat-card text-center">
+                    <i class="fas fa-palette stat-icon"></i>
+                    <h3 class="stat-number">@Model.TotalArtworks</h3>
+                    <p class="stat-label">Total Artworks</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="stat-card text-center">
+                    <i class="fas fa-gavel stat-icon"></i>
+                    <h3 class="stat-number">@Model.ActiveAuctions</h3>
+                    <p class="stat-label">Active Auctions</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="stat-card text-center">
+                    <i class="fas fa-users stat-icon"></i>
+                    <h3 class="stat-number">@Model.TotalAuthors</h3>
+                    <p class="stat-label">Featured Authors</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="stat-card text-center">
+                    <h3 class="stat-number">@(Model.AuthorOfMonth?.TotalSales ?? 0)</h3>
+                    <p class="stat-label">Sales This Month</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@if (Model.AuthorOfMonth != null)
+{
+    <section class="py-5">
+        <div class="container">
+            <div class="text-start mb-5">
+                <h2 class="display-4 mb-3">
+                    Author of the Month
+                </h2>
+                <p class="lead text-muted">Celebrating excellence in art</p>
+            </div>
+
+            <div class="row align-items-center author-of-month">
+                <div class="col-md-6">
+                    @if (Model.AuthorOfMonth.FeaturedArtwork != null)
+                    {
+                        <div class="featured-artwork-frame">
+                            <img src="@Model.AuthorOfMonth.FeaturedArtwork.ImageUrl"
+                                 alt="@Model.AuthorOfMonth.FeaturedArtwork.Title"
+                                 class="img-fluid rounded shadow-lg">
+                        </div>
+                    }
+                </div>
+
+                <div class="col-md-6">
+                    <div class="author-info">
+                        <h3 class="author-name mb-4">@Model.AuthorOfMonth.AuthorName</h3>
+
+                        <div class="author-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-fire text-danger"></i>
+                                <span class="stat-value">@Model.AuthorOfMonth.TotalSales</span>
+                                <span class="stat-text">Artworks Sold</span>
+                            </div>
+
+                            <div class="stat-item">
+                                <i class="fas fa-euro-sign text-success"></i>
+                                <span class="stat-value">€@Model.AuthorOfMonth.TotalRevenue.ToString("N0")</span>
+                                <span class="stat-text">Total Revenue</span>
+                            </div>
+                        </div>
+
+                        @if (Model.AuthorOfMonth.FeaturedArtwork != null)
+                        {
+                            <div class="featured-info mt-4">
+                                <h5>Featured Artwork:</h5>
+                                <p class="mb-2"><strong>@Model.AuthorOfMonth.FeaturedArtwork.Title</strong></p>
+                                <a asp-controller="Artworks"
+                                   asp-action="Details"
+                                   asp-route-id="@Model.AuthorOfMonth.FeaturedArtwork.Id"
+                                   class="btn btn-primary mt-3">
+                                    <i class="fas fa-eye"></i> View Artwork
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<h2>Coming Soon</h2>
+<p>Exciting new artworks are on their way! Check out a preview of what's coming soon:</p>
+
+<div class="row coming-soon">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <img src="/images/artworks/VibrantNature.png" class="card-img-top" alt="Artwork 1">
+            <div class="card-body">
+                <h5 class="card-title">Vibrant Nature</h5>
+                <p class="card-text">Technique: Oil</p>
+                <p class="card-text">Year: 2026</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <img src="/images/artworks/SunsetDreams.png" class="card-img-top" alt="Artwork 2">
+            <div class="card-body">
+                <h5 class="card-title">Sunset Dreams</h5>
+                <p class="card-text">Technique: Watercolor</p>
+                <p class="card-text">Year: 2026</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <img src="/images/artworks/AbstractHarmony.png" class="card-img-top" alt="Artwork 3">
+            <div class="card-body">
+                <h5 class="card-title">Abstract Harmony</h5>
+                <p class="card-text">Technique: Acrylic</p>
+                <p class="card-text">Year: 2026</p>
+            </div>
+        </div>
+    </div>
+</div>

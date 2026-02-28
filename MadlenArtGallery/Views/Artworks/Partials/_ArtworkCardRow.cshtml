@@ -1,0 +1,16 @@
+﻿@model GalleryData.Models.Artwork
+
+<div class="card h-100">
+    <img src="@Model.ImageUrl" class="card-img-top" alt="@Model.Title" />
+    <div class="card-body">
+        <h5 class="card-title">@Model.Title</h5>
+        <p class="card-text">@Model.Author.Name</p>
+        <p class="card-text">$@Model.Price</p>
+
+        <button type="button" class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#artModal-@Model.Id">
+            Details         
+        </button>
+    </div>
+</div>

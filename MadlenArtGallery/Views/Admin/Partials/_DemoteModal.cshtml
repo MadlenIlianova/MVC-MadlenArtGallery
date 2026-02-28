@@ -1,0 +1,26 @@
+﻿@model List<MadlenArtGallery.Models.UserWithRoleViewModel>
+<div class="modal fade" id="demoteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title">
+                    <i class="fas fa-arrow-down"></i> Remove Admin Role
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to remove Admin role from <strong id="demoteUserEmail"></strong>?</p>
+                <p class="text-muted">They will be downgraded to a regular User.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form id="demoteForm" asp-action="RemoveAdmin" method="post">
+                    <input type="hidden" id="demoteUserId" name="userId" />
+                    <button type="submit" class="btn btn-warning">
+                        <i class="fas fa-check"></i> Yes, Demote
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

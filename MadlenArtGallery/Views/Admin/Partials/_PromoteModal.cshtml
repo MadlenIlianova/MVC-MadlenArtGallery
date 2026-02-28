@@ -1,0 +1,29 @@
+﻿@model List<MadlenArtGallery.Models.UserWithRoleViewModel>
+<div class="modal fade" id="promoteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-arrow-up"></i> Promote to Admin
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to promote <strong id="promoteUserEmail"></strong> to Admin?</p>
+                <p class="text-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Admins have full access to all features!
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form id="promoteForm" asp-action="MakeUserAdmin" method="post">
+                    <input type="hidden" id="promoteUserId" name="userId" />
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-check"></i> Yes, Promote
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

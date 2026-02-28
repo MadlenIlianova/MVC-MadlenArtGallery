@@ -1,0 +1,169 @@
+﻿@model IEnumerable<GalleryData.Models.Purchase>
+
+@{
+    ViewData["Title"] = "My Wins";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4">
+     My Auction Wins
+    </h1>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var win in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 border-success shadow-sm">
+                        <div class="card-header bg-success text-white">
+                            <i class="fas fa-trophy"></i> WON!
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(win.Artwork?.ImageUrl))
+                        {
+                            <img src="@win.Artwork.ImageUrl"
+                                 class="card-img-top"
+                                 alt="@win.Artwork.Title"
+                                 style="height: 250px; object-fit: cover;">
+                        }
+                        else
+                        {
+                            <div class="bg-light d-flex align-items-center justify-content-center"
+                                 style="height: 250px;">
+                                <i class="fas fa-image fa-3x text-muted"></i>
+                            </div>
+                        }
+
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@win.Artwork?.Title</h5>
+                            <p class="card-text text-muted">
+                                <i class="fas fa-user"></i> by @(win.Artwork?.Author?.Name ?? "Unknown Artist")
+                            </p>
+
+                            <div class="mb-2">
+                                <span class="fs-4 fw-bold text-success">€@win.TotalPrice.ToString("N2")</span>
+                                @if (win.FrameId.HasValue && win.FramePrice > 0)
+                                {
+                                    <br>
+                                    <small class="text-muted">
+                                        (artwork: €@win.ArtworkPrice.ToString("N2") + frame: €@win.FramePrice.ToString("N2"))
+                                    </small>
+                                }
+                            </div>
+
+                            <small class="text-muted mb-3">
+                                <i class="fas fa-calendar"></i> Won on @win.CreatedAt.ToString("dd/MM/yyyy HH:mm")
+                            </small>
+
+                            <div class="mt-auto pt-3">
+                                @if (!win.FrameId.HasValue)
+                                {
+                                    <a asp-action="SelectFrame"
+                                       asp-route-purchaseId="@win.Id"
+                                       class="btn btn-primary w-100">
+                                        <i class="fas fa-border-style"></i> Add Frame
+                                    </a>
+                                    <small class="text-muted d-block text-center mt-2">
+                                        Optional - enhance your artwork
+                                    </small>
+                                }
+                                else if (win.Frame != null)
+                                {
+                                    <div class="alert alert-success mb-2 py-2">
+                                        <i class="fas fa-check-circle"></i>
+                                        <strong>Frame Added:</strong><br>
+                                        @win.Frame.Material - @win.Frame.Color
+                                        @if (win.FrameSize != null)
+                                        {
+                                            <br>
+                                            <small>Size: @win.FrameSize.Height x @win.FrameSize.Width cm</small>
+                                        }
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <a asp-action="SelectFrame"
+                                           asp-route-purchaseId="@win.Id"
+                                           class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-edit"></i> Change Frame
+                                        </a>
+                                        <form asp-action="RemoveFrame"
+                                              asp-controller="Bids"
+                                              method="post"
+                                              style="display:inline;"
+                                              onsubmit="return confirm('Are you sure you want to remove the frame?\n\nFrame: @win.Frame.Material - @win.Frame.Color\nPrice reduction: €@win.FramePrice.ToString("N2")\nNew total: €@win.ArtworkPrice.ToString("N2")');">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="purchaseId" value="@win.Id" />
+                                            <button type="submit" class="btn btn-outline-danger btn-sm w-100">
+                                                <i class="fas fa-trash"></i> Remove Frame
+                                            </button>
+                                        </form>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center py-5">
+            <i class="fas fa-info-circle fa-3x mb-3"></i>
+            <h4>No Auction Wins Yet</h4>
+            <p>You haven't won any auctions yet. Start bidding to win amazing artworks!</p>
+            <a asp-action="Index" asp-controller="Artworks" class="btn btn-primary mt-3">
+                <i class="fas fa-gavel"></i> Browse Auctions
+            </a>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            console.log('Page loaded');
+
+        @if (TempData["Success"] != null)
+        {
+            <text>
+                        alert('✓ @TempData["Success"]');
+            </text>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <text>
+                        alert('✗ @TempData["Error"]');
+            </text>
+        }
+                });
+    </script>
+}
+
+@section Styles {
+    <style>
+        .card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0,0,0,0.1) !important;
+            }
+
+        .btn {
+            transition: all 0.2s ease;
+        }
+
+            .btn:hover {
+                transform: translateY(-2px);
+            }
+
+        .alert-success {
+            background-color: #d1f2eb;
+            border-color: #baead4;
+            color: #0f5132;
+        }
+    </style>
+}

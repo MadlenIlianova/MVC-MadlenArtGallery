@@ -1,0 +1,240 @@
+﻿@model GalleryData.Models.Artwork
+@{
+    ViewData["Title"] = Model.Title;
+    var highestBid = ViewBag.HighestBid as GalleryData.Models.Bid;
+    var bidsCount = (int)ViewBag.BidsCount;
+    var currentPrice = highestBid?.Price ?? Model.Price;
+    var minimumNextBid = currentPrice + 10;
+}
+
+<div class="container mt-5">
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            <i class="fas fa-check-circle"></i> @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show">
+            <i class="fas fa-exclamation-triangle"></i> @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Model.ImageUrl" class="card-img-top" alt="@Model.Title" style="max-height: 500px; object-fit: contain;">
+                }
+                else
+                {
+                    <div class="bg-secondary text-white text-center p-5">
+                        <i class="fas fa-image fa-5x"></i>
+                        <p class="mt-3">No Image</p>
+                    </div>
+                }
+                <div class="card-body">
+                    <h3>@Model.Title</h3>
+                    <p class="text-muted">by @Model.Author?.Name, @Model.Year</p>
+
+                    <table class="table table-sm">
+                        <tr>
+                            <th>Technique:</th>
+                            <td>@Model.Technique</td>
+                        </tr>
+                        <tr>
+                            <th>Style:</th>
+                            <td>@Model.Style</td>
+                        </tr>
+                        <tr>
+                            <th>Dimensions:</th>
+                            <td>@Model.Height × @Model.Width cm</td>
+                        </tr>
+                        <tr>
+                            <th>Country:</th>
+                            <td>@Model.CountryOfOrigin</td>
+                        </tr>
+                        <tr>
+                            <th>Period:</th>
+                            <td>@Model.Period</td>
+                        </tr>
+                        <tr>
+                            <th>Condition:</th>
+                            <td>@Model.Condition</td>
+                        </tr>
+                        <tr>
+                            <th>Signature:</th>
+                            <td>@Model.Signature</td>
+                        </tr>
+                        <tr>
+                            <th>Frame:</th>
+                            <td>@(Model.SoldWithFrame ? "Included" : "Not included")</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="alert alert-warning text-center">
+                        <h5><i class="fas fa-clock"></i> Time left:</h5>
+                        <div id="countdown" class="fs-3 fw-bold text-danger">Loading...</div>
+                    </div>
+                    <div class="bg-primary text-white p-4 rounded text-center mb-3">
+                        <small>Current bid</small>
+                        <div id="currentBidAmount" class="fs-1 fw-bold">€@currentPrice</div>
+                        <small>
+                            <span id="bidsCount">@bidsCount</span> bid(s)
+                        </small>
+                    </div>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <form asp-controller="Bids" asp-action="PlaceBid" method="post">
+                            <input type="hidden" name="artworkId" value="@Model.Id" />
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Your bid (€)</label>
+                                <input type="number"
+                                       class="form-control form-control-lg text-center"
+                                       id="bidPrice"
+                                       name="bidPrice"
+                                       value="@minimumNextBid"
+                                       min="@minimumNextBid"
+                                       step="10"
+                                       required />
+                                <small class="text-muted">Minimum: €@minimumNextBid</small>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg w-100 mb-2">
+                                <i class="fas fa-gavel"></i> Place Bid
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a asp-area="Identity" asp-page="/Account/Login"
+                           asp-route-returnUrl="@Url.Action("Details", "Artworks", new { id = Model.Id })"
+                           class="btn btn-secondary btn-lg w-100">
+                            <i class="fas fa-sign-in-alt"></i> Login to Bid
+                        </a>
+                    }
+
+                    <hr class="my-4" />
+
+                    <h5><i class="fas fa-history"></i> Bid History</h5>
+                    <div id="bidHistory" style="max-height: 300px; overflow-y: auto;">
+                        @if (bidsCount > 0)
+                        {
+                            @foreach (var bid in Model.Bids.OrderByDescending(b => b.Price).Take(10))
+                            {
+                                <div class="d-flex justify-content-between border-bottom py-2">
+                                    <span>
+                                        <i class="fas fa-user-circle"></i>
+                                        @(bid.User?.Email?.Length > 3 ? bid.User.Email.Substring(0, 3) + "***" : "User***")
+                                    </span>
+                                    <strong>€@bid.Price</strong>
+                                    <small class="text-muted">@bid.Date.ToString("dd/MM HH:mm")</small>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p class="text-muted text-center">No bids yet. Be the first!</p>
+                        }
+                    </div>        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.min.js"></script>
+    <script>
+        const artworkId = @Model.Id;
+        let currentPrice = @currentPrice;
+
+        // SignalR Connection
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/bidHub")
+            .build();
+
+        connection.on("ReceiveNewBid", function (receivedArtworkId, userName, bidAmount) {
+            if (receivedArtworkId === artworkId) {
+                currentPrice = bidAmount;
+                document.getElementById("currentBidAmount").textContent = "€" + bidAmount;
+                const bidsCountEl = document.getElementById("bidsCount");
+                bidsCountEl.textContent = parseInt(bidsCountEl.textContent) + 1;
+                const newMinimum = bidAmount + 10;
+                const bidInput = document.getElementById("bidPrice");
+                if (bidInput) {
+                    bidInput.min = newMinimum;
+                    bidInput.value = newMinimum;
+                }
+                const bidHistory = document.getElementById("bidHistory");
+                const newBid = document.createElement("div");
+                newBid.className = "d-flex justify-content-between border-bottom py-2 bg-success text-white";
+                newBid.innerHTML = `
+                            <span><i class="fas fa-user-circle"></i> ${userName.substring(0, 3)}***</span>
+                            <strong>€${bidAmount}</strong>
+                            <small>Just now</small>
+                        `;
+                bidHistory.insertBefore(newBid, bidHistory.firstChild);
+
+                setTimeout(() => {
+                    newBid.classList.remove('bg-success', 'text-white');
+                }, 3000);
+            }
+        });
+
+        connection.start()
+            .then(() => console.log("✅ SignalR Connected"))
+            .catch(err => console.error("❌ SignalR Error:", err));
+
+        @if (Model.AuctionEndDate.HasValue)
+        {
+            @:const endDate = new Date("@Model.AuctionEndDate.Value.ToString("yyyy-MM-ddTHH:mm:ss")");
+            @:
+            @:function updateCountdown() {
+            @:    const now = new Date();
+            @:    const diff = endDate - now;
+            @:
+            @:    if (diff <= 0) {
+            @:document.getElementById("countdown").innerHTML = '<span class="text-danger">AUCTION ENDED</span>';
+            @:        return;
+            @:    }
+            @:
+            @:    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            @:    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            @:    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            @:    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            @:
+            @:let display = '';
+            @:    if (days > 0) {
+            @:display = `${days}d ${hours}h ${minutes}m`;
+            @:    } else if (hours > 0) {
+            @:display = `${hours}h ${minutes}m ${seconds}s`;
+            @:    } else {
+            @:display = `${minutes}m ${seconds}s`;
+            @:    }
+            @:
+            @:document.getElementById("countdown").textContent = display;
+            @:}
+            @:
+            @:updateCountdown();
+            @:setInterval(updateCountdown, 1000);
+        }
+        else
+        {
+            @:document.getElementById("countdown").innerHTML = '<span class="text-info">No deadline set</span>';
+        }
+    </script>
+}

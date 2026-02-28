@@ -1,0 +1,393 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\MadlenArtGallery.bundle.scp.css",
+      "PackagePath": "staticwebassets\\MadlenArtGallery.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\css\\auth-glass.css",
+      "PackagePath": "staticwebassets\\css\\auth-glass.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\css\\gallery-theme.css",
+      "PackagePath": "staticwebassets\\css\\gallery-theme.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\2f9e50f0-2c31-4cf9-857b-552a8d94cbac.jpg",
+      "PackagePath": "staticwebassets\\images\\artworks\\2f9e50f0-2c31-4cf9-857b-552a8d94cbac.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\5d73b420-b2a7-439d-b1df-b58861281b77.jpg",
+      "PackagePath": "staticwebassets\\images\\artworks\\5d73b420-b2a7-439d-b1df-b58861281b77.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\AbstractHarmony.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\AbstractHarmony.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\AbstractLines.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\AbstractLines.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\CalmSea.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\CalmSea.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\CityLights.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\CityLights.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\Dreamscapee.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\Dreamscapee.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\FloralDreams.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\FloralDreams.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\GoldenPath.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\GoldenPath.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\LeSoleilCouchant.jpg",
+      "PackagePath": "staticwebassets\\images\\artworks\\LeSoleilCouchant.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\LesAilesdesAnges.jpg",
+      "PackagePath": "staticwebassets\\images\\artworks\\LesAilesdesAnges.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\MountainView.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\MountainView.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\MysticMountains.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\MysticMountains.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\NightSky.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\NightSky.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\OceanWaves.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\OceanWaves.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\RedHorizon.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\RedHorizon.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\SilentRiver.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\SilentRiver.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\SunriseGlow.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\SunriseGlow.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\SunsetDreams.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\SunsetDreams.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\VibrantNature.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\VibrantNature.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\WinterForest.png",
+      "PackagePath": "staticwebassets\\images\\artworks\\WinterForest.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\b4f5689b-e6c8-4f80-9ab4-8d9ee195fe3d.jpg",
+      "PackagePath": "staticwebassets\\images\\artworks\\b4f5689b-e6c8-4f80-9ab4-8d9ee195fe3d.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\b9959e2d-362d-451d-94fa-6ed72d2cbbeb.jpg",
+      "PackagePath": "staticwebassets\\images\\artworks\\b9959e2d-362d-451d-94fa-6ed72d2cbbeb.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\artworks\\dacb95a6-0398-4e94-bee0-bb90a58cc64f.jpg",
+      "PackagePath": "staticwebassets\\images\\artworks\\dacb95a6-0398-4e94-bee0-bb90a58cc64f.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\frames\\frame-metalGold.png",
+      "PackagePath": "staticwebassets\\images\\frames\\frame-metalGold.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\frames\\frame-metalSilver.png",
+      "PackagePath": "staticwebassets\\images\\frames\\frame-metalSilver.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\frames\\frame-plasticWhite.png",
+      "PackagePath": "staticwebassets\\images\\frames\\frame-plasticWhite.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\frames\\frame-woodBlack.png",
+      "PackagePath": "staticwebassets\\images\\frames\\frame-woodBlack.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\frames\\frame-woodBrown.png",
+      "PackagePath": "staticwebassets\\images\\frames\\frame-woodBrown.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\images\\gallery.png",
+      "PackagePath": "staticwebassets\\images\\gallery.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\User\\source\\repos\\MadlenArtGallery\\MadlenArtGallery\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MadlenArtGallery.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.MadlenArtGallery.props",
+      "PackagePath": "build\\MadlenArtGallery.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.MadlenArtGallery.props",
+      "PackagePath": "buildMultiTargeting\\MadlenArtGallery.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.MadlenArtGallery.props",
+      "PackagePath": "buildTransitive\\MadlenArtGallery.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

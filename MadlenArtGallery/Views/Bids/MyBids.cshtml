@@ -1,0 +1,71 @@
+﻿@model List<GalleryData.Models.Bid>
+@{
+    ViewData["Title"] = "My Bids";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4"> My Bids</h1>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            <i class="fas fa-check-circle"></i> @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (Model.Any())
+    {
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Artwork</th>
+                                <th>Artist</th>
+                                <th>My Bid</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var bid in Model)
+                            {
+                                var isWinning = bid.Artwork.Bids
+                                .OrderByDescending(b => b.Price)
+                                .FirstOrDefault()?.Id == bid.Id;
+
+                                <tr>
+                                    <td>@bid.Artwork.Title</td>
+                                    <td>@bid.Artwork.Author?.Name</td>
+                                    <td><strong>$@bid.Price</strong></td>
+                                    <td>@bid.Date.ToString("MMM dd, yyyy")</td>
+                                    <td>
+                                        @if (isWinning)
+                                        {
+                                            <span class="badge bg-success">
+                                                <i class="fas fa-trophy"></i> Winning
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">Outbid</span>
+                                        }
+                                    </td>                                   
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i> You haven't placed any bids yet.
+            <a asp-controller="Artworks" asp-action="Index">Browse artworks</a>
+        </div>
+    }
+</div>

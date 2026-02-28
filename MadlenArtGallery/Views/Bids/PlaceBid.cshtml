@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Place Your Bid";
+    var artwork = ViewBag.Artwork as GalleryData.Models.Artwork;
+    var highestBid = ViewBag.HighestBid as GalleryData.Models.Bid;
+    var minimumBid = (int)ViewBag.MinimumBid;
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-gavel"></i> Place Your Bid</h4>
+                </div>
+                <div class="card-body">
+                    @if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <i class="fas fa-exclamation-triangle"></i> @TempData["Error"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            @if (!string.IsNullOrEmpty(artwork.ImageUrl))
+                            {
+                                <img src="@artwork.ImageUrl" class="img-fluid rounded" alt="@artwork.Title">
+                            }
+                        </div>
+                        <div class="col-md-8">
+                            <h5>@artwork.Title</h5>
+                            <p class="text-muted">by @artwork.Author?.Name</p>
+
+                            <div class="mb-2">
+                                <strong>Starting Price:</strong> $@artwork.Price
+                            </div>
+
+                            @if (highestBid != null)
+                            {
+                                <div class="mb-2">
+                                    <strong>Current Highest Bid:</strong>
+                                    <span class="text-success fs-5">$@highestBid.Price</span>
+                                </div>
+                            }
+
+                            <div class="alert alert-warning">
+                                <i class="fas fa-info-circle"></i>
+                                Minimum bid: <strong>$@minimumBid</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form asp-action="PlaceBid" method="post">
+                        <input type="hidden" name="artworkId" value="@artwork.Id" />
+
+                        <div class="mb-3">
+                            <label for="bidPrice" class="form-label">Your Bid Amount ($)</label>
+                            <input type="number"
+                                   class="form-control form-control-lg"
+                                   id="bidPrice"
+                                   name="bidPrice"
+                                   min="@minimumBid"
+                                   value="@minimumBid"
+                                   required />
+                            <div class="form-text">
+                                Enter an amount of at least $@minimumBid
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-gavel"></i> Place Bid
+                            </button>
+                            <a asp-action="Index" asp-route-artworkId="@artwork.Id" class="btn btn-secondary">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

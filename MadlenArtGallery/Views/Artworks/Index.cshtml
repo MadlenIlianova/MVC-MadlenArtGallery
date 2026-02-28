@@ -1,0 +1,334 @@
+﻿@model MadlenArtGallery.Models.ArtworkSearchViewModel
+@{
+    ViewData["Title"] = "Artworks Gallery";
+}
+
+<div class="container mt-5">
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+  
+    <h2><i class="fas fa-search"></i> Search by filters</h2>
+    <form asp-action="Index" method="get" class="mb-4">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <select asp-for="Technique" class="form-select">
+                    <option value="">Technique</option>
+                    <option value="Watercolor">Watercolor</option>
+                    <option value="Oil">Oil</option>
+                    <option value="Acrylic">Acrylic</option>
+                    <option value="Mixed Media">Mixed Media</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <select asp-for="Style" class="form-select">
+                    <option value="">Style</option>
+                    <option value="Contemporary">Contemporary</option>
+                    <option value="Impressionism">Impressionism</option>
+                    <option value="Abstract">Abstract</option>
+                    <option value="Realism">Realism</option>
+                    <option value="Landscape">Landscape</option>
+                    <option value="Modern">Modern</option>
+                    <option value="Still Life">Still Life</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <select asp-for="SortBy" class="form-select">
+                    <option value="">Sort by</option>
+                    <option value="price_asc">Price ↑</option>
+                    <option value="price_desc">Price ↓</option>
+                    <option value="year_asc">Year ↑</option>
+                    <option value="year_desc">Year ↓</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <input type="number" asp-for="YearFrom" placeholder="Year From" class="form-control" />
+            </div>
+
+            <div class="col-md-3">
+                <input type="number" asp-for="YearTo" placeholder="Year To" class="form-control" />
+            </div>
+
+            <div class="col-md-3">
+                <input type="number" asp-for="MinPrice" placeholder="Min Price €" class="form-control" />
+            </div>
+
+            <div class="col-md-3">
+                <input type="number" asp-for="MaxPrice" placeholder="Max Price €" class="form-control" />
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i> Search
+            </button>
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-times"></i> Clear
+            </a>
+        </div>
+    </form>
+
+    <hr />
+
+    <h3 class="mb-3">
+        Results found: @Model.Results.Count
+    </h3>
+
+    @if (Model.Results.Any())
+    {
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var artwork in Model.Results)
+            {
+                var currentPrice = artwork.Bids?.OrderByDescending(b => b.Price).FirstOrDefault()?.Price ?? artwork.Price;
+                var hasTimer = artwork.AuctionEndDate.HasValue;
+                var timeLeft = hasTimer ? artwork.AuctionEndDate.Value - DateTime.Now : TimeSpan.Zero;
+                var isActive = artwork.IsAuctionActive && timeLeft.TotalSeconds > 0;
+
+                <div class="col">
+                    <div class="card h-100">
+                        @if (!string.IsNullOrEmpty(artwork.ImageUrl))
+                        {
+                            <img src="@artwork.ImageUrl" class="card-img-top" alt="@artwork.Title" style="height: 300px; object-fit: cover;">
+                        }
+                        else
+                        {
+                            <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 300px;">
+                                <i class="fas fa-image fa-3x"></i>
+                            </div>
+                        }
+
+                        @if (hasTimer && isActive)
+                        {
+                            <div class="position-absolute top-0 end-0 m-2">
+                                <span class="badge bg-success">
+                                    <i class="fas fa-clock"></i>
+                                    @if (timeLeft.TotalDays >= 1)
+                                    {
+                                        <text>@((int)timeLeft.TotalDays)d @timeLeft.Hours</text>
+
+                                        <text>h</text>
+                                    }
+                                    else
+                                    {
+                                        <text>@timeLeft.Hours</text>
+
+                                        <text>h @timeLeft.Minutes</text>
+
+                                        <text>m</text>
+                                    }
+                                </span>
+                            </div>
+                        }
+                        else if (hasTimer && !isActive)
+                        {
+                            <div class="position-absolute top-0 end-0 m-2">
+                                <span class="badge bg-danger">
+                                    <i class="fas fa-ban"></i> ENDED
+                                </span>
+                            </div>
+                        }
+
+                        <div class="card-body">
+                            <h5 class="card-title">@artwork.Title</h5>
+                            <p class="card-text text-muted">@artwork.Author?.Name</p>
+                            <p class="card-text fs-4 fw-bold text-success">€@currentPrice</p>
+
+                            @if (artwork.Bids != null && artwork.Bids.Any())
+                            {
+                                <small class="text-muted">
+                                    <i class="fas fa-gavel"></i> @artwork.Bids.Count bid(s)
+                                </small>
+                            }
+                        </div>
+
+                        <div class="card-footer bg-transparent">
+                            <div class="d-grid gap-2">
+                                <a asp-controller="Artworks" asp-action="Details" asp-route-id="@artwork.Id"
+                                   class="btn btn-primary">
+                                    <i class="fas fa-eye"></i> View & Bid
+                                </a>
+
+                                <button type="button" class="btn btn-outline-secondary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#artModal-@artwork.Id">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </button>
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <div class="btn-group btn-group-sm">
+                                        @if (!hasTimer || !isActive)
+                                        {
+                                            <button type="button"
+                                                    class="btn btn-warning"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#timerModal@(artwork.Id)">
+                                                <i class="fas fa-clock"></i> Timer
+                                            </button>
+                                        }
+                                        <a asp-action="Edit" asp-route-id="@artwork.Id" class="btn btn-secondary">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@artwork.Id" class="btn btn-danger">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="artModal-@artwork.Id" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">@artwork.Title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @if (!string.IsNullOrEmpty(artwork.ImageUrl))
+                                        {
+                                            <img src="@artwork.ImageUrl" class="img-fluid rounded" alt="@artwork.Title">
+                                        }
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table class="table table-sm">
+                                            <tr>
+                                                <th>Artist:</th>
+                                                <td>@artwork.Author?.Name</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Year:</th>
+                                                <td>@artwork.Year</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Technique:</th>
+                                                <td>@artwork.Technique</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Style:</th>
+                                                <td>@artwork.Style</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Dimensions:</th>
+                                                <td>@artwork.Height × @artwork.Width cm</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Country:</th>
+                                                <td>@artwork.CountryOfOrigin</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Condition:</th>
+                                                <td>@artwork.Condition</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Current Price:</th>
+                                                <td class="fs-5 fw-bold text-success">€@currentPrice</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a asp-action="Details" asp-route-id="@artwork.Id" class="btn btn-primary">
+                                    <i class="fas fa-gavel"></i> Go to Bidding Page
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="modal fade" id="timerModal@(artwork.Id)" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header bg-warning">
+                                    <h5 class="modal-title">
+                                        <i class="fas fa-clock"></i> Set Auction Timer
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <form asp-action="SetAuctionTimer" method="post">
+                                    <div class="modal-body">
+                                        <input type="hidden" name="artworkId" value="@artwork.Id" />
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Auction End Date & Time</label>
+                                            <input type="datetime-local"
+                                                   name="endDate"
+                                                   class="form-control form-control-lg"
+                                                   id="endDate@(artwork.Id)"
+                                                   required />
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Quick Set:</label>
+                                            <div class="d-grid gap-2">
+                                                <button type="button" class="btn btn-outline-primary" onclick="setQuickTimer('@artwork.Id', 1)">
+                                                    1 Day
+                                                </button>
+                                                <button type="button" class="btn btn-outline-primary" onclick="setQuickTimer('@artwork.Id', 3)">
+                                                    3 Days
+                                                </button>
+                                                <button type="button" class="btn btn-outline-primary" onclick="setQuickTimer('@artwork.Id', 7)">
+                                                    7 Days
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-warning">
+                                            <i class="fas fa-save"></i> Set Timer
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning text-center">
+            <h4><i class="fas fa-exclamation-triangle"></i> No artworks found</h4>
+            <p>Try adjusting your search filters.</p>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputs = document.querySelectorAll('input[type="datetime-local"]');
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+            const minDate = now.toISOString().slice(0, 16);
+            inputs.forEach(input => {
+                input.min = minDate;
+        });
+
+        function setQuickTimer(artworkId, days) {
+            const input = document.getElementById('endDate' + artworkId);
+            const date = new Date();
+            date.setDate(date.getDate() + days);
+            date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+            input.value = date.toISOString().slice(0, 16);
+        }
+    </script>
+}

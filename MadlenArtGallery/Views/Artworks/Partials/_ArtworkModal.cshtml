@@ -1,0 +1,25 @@
+﻿@model GalleryData.Models.Artwork
+
+<div class="modal fade" id="artModal-@Model.Id" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@Model.Title by @Model.Author.Name</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Technique:</strong> @Model.Technique</p>
+                <p><strong>Signature:</strong> @Model.Signature</p>
+                <p><strong>Year:</strong> @Model.Year</p>
+                <p><strong>Country:</strong> @Model.CountryOfOrigin</p>
+                <p><strong>Style:</strong> @Model.Style</p>
+                <p><strong>Condition:</strong> @Model.Condition</p>
+                <p><strong>Height x Width:</strong> @Model.Height x @Model.Width cm</p>
+                <p><strong>Price:</strong> $@Model.Price</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

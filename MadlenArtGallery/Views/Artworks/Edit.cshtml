@@ -1,0 +1,152 @@
+﻿@model GalleryData.Models.Artwork
+@{
+    ViewData["Title"] = "Edit Artwork";
+    var authors = ViewBag.Authors as List<GalleryData.Models.Author>;
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0"><i class="fas fa-edit"></i> Edit Artwork</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" asp-controller="Artworks" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Title" class="form-label">Title</label>
+                                <input asp-for="Title" class="form-control" required />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="AuthorId" class="form-label">Author</label>
+                                <select asp-for="AuthorId" class="form-select" required>
+                                    <option value="">-- Select Author --</option>
+                                    @foreach (var author in authors)
+                                    {
+                                        <option value="@author.Id">@author.Name</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="AuthorId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Price" class="form-label">Price ($)</label>
+                                <input asp-for="Price" type="number" step="0.01" class="form-control" required />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Year" class="form-label">Year</label>
+                                <input asp-for="Year" type="number" class="form-control" required />
+                                <span asp-validation-for="Year" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Technique" class="form-label">Technique</label>
+                                <input asp-for="Technique" class="form-control" />
+                                <span asp-validation-for="Technique" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Style" class="form-label">Style</label>
+                                <input asp-for="Style" class="form-control" />
+                                <span asp-validation-for="Style" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Width" class="form-label">Width (cm)</label>
+                                <input asp-for="Width" type="number" step="0.01" class="form-control" />
+                                <span asp-validation-for="Width" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Height" class="form-label">Height (cm)</label>
+                                <input asp-for="Height" type="number" step="0.01" class="form-control" />
+                                <span asp-validation-for="Height" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Period" class="form-label">Period</label>
+                                <input asp-for="Period" class="form-control" />
+                                <span asp-validation-for="Period" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Condition" class="form-label">Condition</label>
+                                <input asp-for="Condition" class="form-control" />
+                                <span asp-validation-for="Condition" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Signature" class="form-label">Signature</label>
+                                <input asp-for="Signature" class="form-control" />
+                                <span asp-validation-for="Signature" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="CountryOfOrigin" class="form-label">Country of Origin</label>
+                                <input asp-for="CountryOfOrigin" class="form-control" />
+                                <span asp-validation-for="CountryOfOrigin" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="AuctionEndDate" class="form-label">Auction End Date</label>
+                                <input asp-for="AuctionEndDate" type="datetime-local" class="form-control" />
+                                <span asp-validation-for="AuctionEndDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="form-check mt-4">
+                                    <input asp-for="IsAuctionActive" class="form-check-input" type="checkbox" />
+                                    <label asp-for="IsAuctionActive" class="form-check-label">
+                                        Auction Active
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Current Image</label><br />
+                            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                            {
+                                <img src="@Model.ImageUrl" alt="@Model.Title" class="img-thumbnail mb-2" style="max-width: 200px;" />
+                            }
+                            else
+                            {
+                                <p class="text-muted">No image uploaded</p>
+                            }
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Upload New Image (optional)</label>
+                            <input type="file" name="imageFile" class="form-control" accept="image/*" />
+                            <small class="text-muted">Leave empty to keep current image</small>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-warning btn-lg">
+                                <i class="fas fa-save"></i> Update Artwork
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

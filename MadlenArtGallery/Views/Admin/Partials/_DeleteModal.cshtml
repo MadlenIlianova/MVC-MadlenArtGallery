@@ -1,0 +1,30 @@
+﻿@model List<MadlenArtGallery.Models.UserWithRoleViewModel>
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-exclamation-triangle"></i> Delete User
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger">
+                    <i class="fas fa-warning"></i>
+                    <strong>Warning!</strong> This action cannot be undone!
+                </div>
+                <p>Are you sure you want to permanently delete <strong id="deleteUserEmail"></strong>?</p>
+                <p class="text-muted">All their bids and data will be removed.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form id="deleteForm" asp-action="DeleteUser" method="post">
+                    <input type="hidden" id="deleteUserId" name="userId" />
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Yes, Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

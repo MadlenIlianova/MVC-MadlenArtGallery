@@ -1,0 +1,60 @@
+﻿@model List<GalleryData.Models.Purchase>
+@{
+    ViewData["Title"] = "Auction Winners";
+}
+
+<div class="container mt-5">
+    <h1><i class="fas fa-trophy"></i> Auction Winners</h1>
+
+    @if (Model.Any())
+    {
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Artwork</th>
+                            <th>Artist</th>
+                            <th>Winner</th>
+                            <th>Winning Bid</th>
+                            <th>Date Closed</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var purchase in Model)
+                        {
+                            <tr>
+                                <td>@purchase.Artwork.Title</td>
+                                <td>@purchase.Artwork.Author?.Name</td>
+                                <td>
+                                    <i class="fas fa-user-circle"></i>
+                                    @purchase.User?.Email
+                                </td>
+                                <td class="fw-bold text-success">€@purchase.TotalPrice</td>
+                                <td>@purchase.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>
+                                    <span class="badge bg-success">
+                                        <i class="fas fa-check"></i> Sold
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i> No completed auctions yet.
+        </div>
+    }
+</div>
+
+@section Scripts{
+    <script>
+
+    </script>
+}

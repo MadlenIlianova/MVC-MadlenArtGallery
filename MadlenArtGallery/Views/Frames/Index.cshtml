@@ -1,0 +1,40 @@
+﻿@model IEnumerable<GalleryData.Models.Frame>
+
+<h2 class="mb-4">Available Frames</h2>
+
+@foreach (var frame in Model)
+{
+    <div class="card mb-4 p-3">
+        <div class="row align-items-center">
+
+            <div class="col-md-3 text-center">
+                <img src="@frame.ImageUrl"
+                     class="img-fluid rounded"
+                     style="max-height: 180px;" />
+            </div>
+
+            <div class="col-md-9">
+                <h4>@frame.Material - @frame.Color</h4>
+
+                <table class="table table-sm mt-3">
+                    <thead>
+                        <tr>
+                            <th>Size (cm)</th>
+                            <th>Price ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var size in frame.Sizes)
+                        {
+                            <tr>
+                                <td>@size.Height x @size.Width</td>
+                                <td>$@size.Price</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+}

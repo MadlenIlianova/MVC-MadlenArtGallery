@@ -1,0 +1,87 @@
+﻿@model GalleryData.Models.Artwork
+@{
+    ViewData["Title"] = "Delete Artwork";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-danger shadow-lg">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-exclamation-triangle"></i> Confirm Deletion
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-danger">
+                        <i class="fas fa-warning"></i>
+                        <strong>Warning!</strong> You are about to permanently delete this artwork. This action cannot be undone.
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                            {
+                                <img src="@Model.ImageUrl" class="img-fluid rounded shadow" alt="@Model.Title">
+                            }
+                            else
+                            {
+                                <div class="bg-secondary text-white d-flex align-items-center justify-content-center rounded" style="height: 200px;">
+                                    <i class="fas fa-image fa-3x"></i>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-8">
+                            <h5 class="mb-3">@Model.Title</h5>
+                            <table class="table table-sm table-bordered">
+                                <tr>
+                                    <th style="width: 40%;">Artist:</th>
+                                    <td>@Model.Author?.Name</td>
+                                </tr>
+                                <tr>
+                                    <th>Year:</th>
+                                    <td>@Model.Year</td>
+                                </tr>
+                                <tr>
+                                    <th>Price:</th>
+                                    <td class="fw-bold">€@Model.Price</td>
+                                </tr>
+                                <tr>
+                                    <th>Style:</th>
+                                    <td>@Model.Style</td>
+                                </tr>
+                                <tr>
+                                    <th>Technique:</th>
+                                    <td>@Model.Technique</td>
+                                </tr>
+                                @if (Model.Bids != null && Model.Bids.Any())
+                                {
+                                    <tr>
+                                        <th>Bids:</th>
+                                        <td class="text-warning">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            @Model.Bids.Count bid(s) - will be deleted too!
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="d-flex gap-3 justify-content-end">
+                            <a asp-action="Index" class="btn btn-secondary btn-lg">
+                                <i class="fas fa-arrow-left"></i> Cancel
+                            </a>
+                            <button type="submit" class="btn btn-danger btn-lg">
+                                <i class="fas fa-trash"></i> Yes, Delete Permanently
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

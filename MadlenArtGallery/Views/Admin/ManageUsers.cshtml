@@ -1,0 +1,214 @@
+﻿@model List<MadlenArtGallery.Models.UserWithRoleViewModel>
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>
+            <i class="fas fa-users"></i> Manage Users
+            <span class="badge bg-primary">@Model.Count</span>
+        </h1>
+        <a asp-action="Dashboard" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            <i class="fas fa-check-circle"></i> @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show">
+            <i class="fas fa-exclamation-triangle"></i> @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (Model.Any())
+    {
+        <div class="card shadow">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Email</th>
+                                <th>Username</th>
+                                <th>Role</th>
+                                <th>Email Status</th>
+                                <th>Phone</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                var isAdmin = item.Roles.Contains("Admin");
+                                var isMainAdmin = item.User.Email == "admin@gallery.com";
+
+                                <tr>
+                                    <td>
+                                        <strong>@item.User.Email</strong>
+                                        @if (isMainAdmin)
+                                        {
+                                            <span class="badge bg-danger ms-2">
+                                                <i class="fas fa-crown"></i> Main Admin
+                                            </span>
+                                        }
+                                    </td>
+                                    <td>@item.User.UserName</td>
+                                    <td>
+                                        @if (isAdmin)
+                                        {
+                                            <span class="badge bg-danger fs-6">
+                                                <i class="fas fa-user-shield"></i> ADMIN
+                                            </span>
+                                        }
+                                        else if (item.Roles.Contains("User"))
+                                        {
+                                            <span class="badge bg-primary fs-6">
+                                                <i class="fas fa-user"></i> USER
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary fs-6">No Role</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.User.EmailConfirmed)
+                                        {
+                                            <span class="badge bg-success">
+                                                <i class="fas fa-check-circle"></i> Confirmed
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-warning text-dark">
+                                                <i class="fas fa-clock"></i> Pending
+                                            </span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(item.User.PhoneNumber))
+                                        {
+                                            <span>@item.User.PhoneNumber</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">N/A</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        @if (!isMainAdmin)
+                                        {
+                                            <div class="btn-group" role="group">
+                                                @if (!isAdmin)
+                                                {
+                                                    <button type="button"
+                                                            class="btn btn-sm btn-success"
+                                                            onclick="openPromoteModal('@item.User.Id', '@item.User.Email')">
+                                                        <i class="fas fa-arrow-up"></i> Promote
+                                                    </button>
+                                                }
+                                                else
+                                                {
+                                                    <button type="button"
+                                                            class="btn btn-sm btn-warning"
+                                                            onclick="openDemoteModal('@item.User.Id', '@item.User.Email')">
+                                                        <i class="fas fa-arrow-down"></i> Demote
+                                                    </button>
+                                                }
+
+                                                <button type="button"
+                                                        class="btn btn-sm btn-danger"
+                                                        onclick="openDeleteModal('@item.User.Id', '@item.User.Email')">
+                                                    <i class="fas fa-trash"></i> Delete
+                                                </button>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">
+                                                <i class="fas fa-lock"></i> Protected
+                                            </span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card text-white bg-danger shadow">
+                    <div class="card-body text-center">
+                        <h3 class="display-4">@Model.Count(u => u.Roles.Contains("Admin"))</h3>
+                        <p class="mb-0"><i class="fas fa-user-shield"></i> Admins</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-primary shadow">
+                    <div class="card-body text-center">
+                        <h3 class="display-4">@Model.Count(u => u.Roles.Contains("User"))</h3>
+                        <p class="mb-0"><i class="fas fa-users"></i> Users</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-success shadow">
+                    <div class="card-body text-center">
+                        <h3 class="display-4">@Model.Count(u => u.User.EmailConfirmed)</h3>
+                        <p class="mb-0"><i class="fas fa-check-circle"></i> Confirmed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i> No users found.
+        </div>
+    }
+</div>
+
+
+<partial name="Partials/_PromoteModal" />
+<partial name="Partials/_DemoteModal" />
+<partial name="Partials/_DeleteModal" />
+
+@section Scripts {
+    <script>
+        function openPromoteModal(userId, userEmail) {
+            document.getElementById('promoteUserId').value = userId;
+            document.getElementById('promoteUserEmail').textContent = userEmail;
+            var modal = new bootstrap.Modal(document.getElementById('promoteModal'));
+            modal.show();
+        }
+
+        function openDemoteModal(userId, userEmail) {
+            document.getElementById('demoteUserId').value = userId;
+            document.getElementById('demoteUserEmail').textContent = userEmail;
+            var modal = new bootstrap.Modal(document.getElementById('demoteModal'));
+            modal.show();
+        }
+
+        function openDeleteModal(userId, userEmail) {
+            document.getElementById('deleteUserId').value = userId;
+            document.getElementById('deleteUserEmail').textContent = userEmail;
+            var modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+            modal.show();
+        }
+    </script>
+}

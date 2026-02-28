@@ -1,0 +1,14 @@
+C:\Users\User\source\repos\MadlenArtGallery\GalleryData\bin\Debug\net8.0\GalleryData.deps.json
+C:\Users\User\source\repos\MadlenArtGallery\GalleryData\bin\Debug\net8.0\GalleryData.runtimeconfig.json
+C:\Users\User\source\repos\MadlenArtGallery\GalleryData\bin\Debug\net8.0\GalleryData.dll
+C:\Users\User\source\repos\MadlenArtGallery\GalleryData\bin\Debug\net8.0\GalleryData.pdb
+C:\Users\User\source\repos\MadlenArtGallery\GalleryData\obj\Debug\net8.0\GalleryData.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\MadlenArtGallery\GalleryData\obj\Debug\net8.0\GalleryData.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\MadlenArtGallery\GalleryData\obj\Debug\net8.0\GalleryData.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\MadlenArtGallery\GalleryData\obj\Debug\net8.0\GalleryData.AssemblyInfo.cs
+C:\Users\User\source\repos\MadlenArtGallery\GalleryData\obj\Debug\net8.0\GalleryData.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\MadlenArtGallery\GalleryData\obj\Debug\net8.0\GalleryData.dll
+C:\Users\User\source\repos\MadlenArtGallery\GalleryData\obj\Debug\net8.0\refint\GalleryData.dll
+C:\Users\User\source\repos\MadlenArtGallery\GalleryData\obj\Debug\net8.0\GalleryData.pdb
+C:\Users\User\source\repos\MadlenArtGallery\GalleryData\obj\Debug\net8.0\GalleryData.genruntimeconfig.cache
+C:\Users\User\source\repos\MadlenArtGallery\GalleryData\obj\Debug\net8.0\ref\GalleryData.dll
